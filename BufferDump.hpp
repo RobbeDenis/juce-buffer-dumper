@@ -23,8 +23,11 @@ namespace jbd
 		// Has to be called to shut down the thread and dump the last buffer info into the file
 		void Shutdown();
 
-
+		// Write to the current file
 		void Write(const float* const* data, int numSamples);
+		/*
+		Dump the remaining writer info into the current file, and create the next one.
+		Using does not wait on write to be finished, so the last write might not fully finish */
 		void Dump();
 
 	private:

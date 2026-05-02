@@ -66,7 +66,6 @@ void jbd::BufferDumper::CreateNextWriter()
         nextFile = m_DumpDirectory.getChildFile(m_FileName + "_" + std::to_string(m_Counter) + ".wav");
     }
 
-
     WavAudioFormat wavFormat;
     std::unique_ptr<OutputStream> streamToWriteTo{ std::make_unique<FileOutputStream>(nextFile) };
     std::unique_ptr<AudioFormatWriter> writer{ wavFormat.createWriterFor(streamToWriteTo, m_WriterOptions) };
@@ -83,7 +82,6 @@ void jbd::BufferDumper::CreateNextWriter()
 void jbd::BufferDumper::Write(const float* const* data, int numSamples)
 {
     m_ThreadedWriter->write(data, numSamples);
-
 }
 
 void jbd::BufferDumper::Dump()
@@ -96,10 +94,8 @@ void jbd::BufferDumper::Shutdown()
 {
     if (m_Thread.isThreadRunning()) 
     {
-        // Dump the remaining buffer info
+        // Dump the remaining buffer info before closing thread
         m_ThreadedWriter.reset(nullptr);
-
-        // Stop thread
         m_Thread.stopThread(1000);
     }
 }
