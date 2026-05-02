@@ -8,13 +8,23 @@ Before writing audio data, you must call Initialize. This method starts the back
 ```cpp
 // usually as member variable
 const bool sanitizePath{ true };
-jbd::BufferDumper bufferDumper{ juce::File::createFileWithoutCheckingPath("C:\\JuceProject\\dump"), "buffer_dump", sanitizePath };
+const juce::File dir{ juce::File::createFileWithoutCheckingPath("C:\\JuceProject\\dump") };
+const juce::String fileName{ "buffer_dump" };
+jbd::BufferDumper bufferDumper{ dir, fileName, sanitizePath };
 
 // usually in prepareToPlay
 juce::AudioFormatWriterOptions options{ };
 options = options.withSampleRate(getSampleRate());
 options = options.withNumChannels(getTotalNumOutputChannels());
 bufferDumper.Initialize(options);
+```
+```
+C:/JuceProject/dump/       # Created dump folder
+├── buffer_dump_0.wav      # Output WAV files
+├── buffer_dump_1.wav 
+├── buffer_dump_2.wav 
+├── buffer_dump_3.wav 
+└── ...
 ```
 
 ## Write and Dump
