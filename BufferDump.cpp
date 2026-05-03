@@ -10,7 +10,6 @@ jbd::BufferDumper::BufferDumper(juce::File dumpDirectory, juce::String wavFileNa
 	, m_FileName{ wavFileName }
 	, m_Counter{ 0 }
 	, m_SanitizePath{ sanitizePath }
-	, m_DumpOnWrite{ false }
 	, m_ThreadedWriter{ nullptr }
 	, m_Thread{ "BufferDumpThread" }
 {

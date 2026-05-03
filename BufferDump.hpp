@@ -39,7 +39,6 @@ namespace jbd
 		juce::String m_FileName;
 		size_t m_Counter;
 		bool m_SanitizePath;
-		bool m_DumpOnWrite;
 
 		std::unique_ptr<juce::AudioFormatWriter::ThreadedWriter> m_ThreadedWriter;
 		juce::TimeSliceThread m_Thread;
