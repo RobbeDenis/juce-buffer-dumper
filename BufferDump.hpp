@@ -34,13 +34,13 @@ namespace jbd
 		void SanitizePath();
 		void CreateNextWriter();
 
+		juce::TimeSliceThread m_Thread;
 		juce::AudioFormatWriterOptions m_WriterOptions;
+
+		std::unique_ptr<juce::AudioFormatWriter::ThreadedWriter> m_ThreadedWriter;
 		juce::File m_DumpDirectory;
 		juce::String m_FileName;
 		size_t m_Counter;
 		bool m_SanitizePath;
-
-		std::unique_ptr<juce::AudioFormatWriter::ThreadedWriter> m_ThreadedWriter;
-		juce::TimeSliceThread m_Thread;
 	};
 }
